@@ -12,8 +12,8 @@ from wordcloud import WordCloud
 #Reading the raw data collected from the Twitter Streaming API using #Tweepy. 
 tweets_data = []
 tweets_text=[]
-tweets_data_path = 'IPLAuction2021.csv'
-with open('iplauction2.txt','r') as file:
+
+with open('tweetsFiltered1.txt','r') as file:
     
     for line in file.read().split('\n'):
         field = line.split(' ')
