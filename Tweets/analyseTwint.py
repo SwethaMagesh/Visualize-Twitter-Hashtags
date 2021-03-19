@@ -36,17 +36,17 @@ print("The total number of Tweets is:",len(tweets_data))
 
 #To see the most used hashtags.
 hashtags = []
-hashtag_pattern = re.compile(r"#[a-zA-Z]+")
+hashtag_pattern = re.compile(r"#[a-zA-Z0-9]+")
 hashtag_matches=[]
 for text in tweets_text:
     hashtag_matches.append(hashtag_pattern.findall(text))
 hashtag_dict = {}
 for match in hashtag_matches:
     for singlematch in match:
-        if singlematch not in hashtag_dict.keys():
-            hashtag_dict[singlematch] = 1
+        if singlematch.lower() not in hashtag_dict.keys():
+            hashtag_dict[singlematch.lower()] = 1
         else:
-            hashtag_dict[singlematch] = hashtag_dict[singlematch]+1
+            hashtag_dict[singlematch.lower()] = hashtag_dict[singlematch.lower()]+1
 
 
 
@@ -74,7 +74,7 @@ plt.show()
 #Make a wordcloud plot of the most used hashtags, for this we need a #dictionary 
 #where the keys are the words and the values are the number of #appearances
 hashtag_ordered_dict = {}
-for item in hashtag_ordered_list[0:20]:
+for item in hashtag_ordered_list:
     hashtag_ordered_dict[item[0]] = item[1]
 wordcloud = WordCloud(width=1000, height=1000, random_state=21, max_font_size=200, background_color = 'white').generate_from_frequencies(hashtag_ordered_dict)
 plt.figure(figsize=(15, 10))
