@@ -8,26 +8,36 @@ import re
 import collections
 from wordcloud import WordCloud
 
-
-#Reading the raw data collected from the Twitter Streaming API using #Tweepy. 
+#Store the tweets from txt file to json with all details and list data form
 tweets_data = []
-tweets_text=[]
-
-with open('tweetsFiltered1.txt','r') as file:
+tweets_text = []
+tweets_id=dict()
+print("Parsing the text file")
+for filename in ['result1.txt','result2.txt','result3.txt','result4.txt','result5.txt']:
+    print("Parsing the text file",filename)
+    with open(filename,'r') as file:
+        number=0
+        for line in file.read().split('\n'):
+            field = line.split(' ')
+            if field[0] in tweets_id:
+                continue
+            else:
+                tweets_id[field[0]]=1
+            tweets=dict()
+            if len(field)<5:
+                continue
+            tweets['id']=field[0]
+            tweets['date']=field[1]
+            tweets['time']=field[2]
+            temp=' '.join(field[4:])
+            #temp=temp.replace(r'[a-zA-Z0-9]','')
+            tweets['text']=temp
+            tweets_text.append(temp)
+            tweets_data.append(tweets)
+            number+=1
+        print(number," is the number of tweets")
     
-    for line in file.read().split('\n'):
-        field = line.split(' ')
-        tweets=dict()
-        if len(field)<5:
-            continue
-        tweets['id']=field[0]
-        tweets['date']=field[1]
-        tweets['time']=field[2]
-        temp=' '.join(field[4:])
-        #temp=temp.replace(r'[a-zA-Z0-9]','')
-        tweets['text']=temp
-        tweets_text.append(temp)
-        tweets_data.append(tweets)
+        
 
 
 
@@ -56,8 +66,10 @@ hashtag_ordered_list = hashtag_ordered_list[::-1]
 #Separating the hashtags and their values into two different lists
 hashtag_ordered_values = []
 hashtag_ordered_keys = []
-#Pick the 20 most used hashtags to plot
-for item in hashtag_ordered_list[0:20]:
+print(len(hashtag_ordered_list))
+print(hashtag_ordered_list)
+#Pick the 30 most used hashtags to plot
+for item in hashtag_ordered_list[4:30]:
     hashtag_ordered_keys.append(item[0])
     hashtag_ordered_values.append(item[1])
 #Plotting a graph with the most used hashtags
@@ -66,7 +78,7 @@ y_pos = np.arange(len(hashtag_ordered_keys))
 ax.barh(y_pos ,list(hashtag_ordered_values)[::-1], align='center', color = 'green', edgecolor = 'black', linewidth=1)
 ax.set_yticks(y_pos)
 ax.set_yticklabels(list(hashtag_ordered_keys)[::-1])
-ax.set_xlabel("No of appereances")
+ax.set_xlabel("No of appearances")
 ax.set_title("Most used #hashtags", fontsize = 20)
 plt.tight_layout(pad=3)
 plt.show()
@@ -74,7 +86,7 @@ plt.show()
 #Make a wordcloud plot of the most used hashtags, for this we need a #dictionary 
 #where the keys are the words and the values are the number of #appearances
 hashtag_ordered_dict = {}
-for item in hashtag_ordered_list:
+for item in hashtag_ordered_list[4:50]:#leave the top 4 
     hashtag_ordered_dict[item[0]] = item[1]
 wordcloud = WordCloud(width=1000, height=1000, random_state=21, max_font_size=200, background_color = 'white').generate_from_frequencies(hashtag_ordered_dict)
 plt.figure(figsize=(15, 10))
@@ -86,7 +98,7 @@ plt.show()
 
 #Now we will do the same with the mentions:
 mentions = []
-mention_pattern = re.compile(r"@[a-zA-Z_]+")
+mention_pattern = re.compile(r"@[a-zA-Z_0-9]+")
 mention_matches=[]
 for text in tweets_text:
     mention_matches.append(mention_pattern.findall(text))
@@ -105,6 +117,7 @@ mentions_ordered_list = mentions_ordered_list[::-1]
 #Pick the 20 top mentioned users to plot and separate the previous #list into two list: one with the users and one with the values
 mentions_ordered_values = []
 mentions_ordered_keys = []
+print(len(mentions_ordered_list))
 for item in mentions_ordered_list[0:20]:
     mentions_ordered_keys.append(item[0])
     mentions_ordered_values.append(item[1])
@@ -122,7 +135,7 @@ plt.show()
 
 #Make a wordcloud representation for the most mentioned accounts too
 mentions_ordered_dict = {}
-for item in mentions_ordered_list[0:20]:
+for item in mentions_ordered_list[:40]:
     mentions_ordered_dict[item[0]] = item[1]
 wordcloud = WordCloud(width=1000, height=1000, random_state=21, max_font_size=200, background_color = 'white').generate_from_frequencies(mentions_ordered_dict)
 plt.figure(figsize=(15, 10))
