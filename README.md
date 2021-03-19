@@ -8,7 +8,13 @@
 - Libraries used: twint and tweepy
 - Identify the counts of hashtags and mentioned accounts and display it as graph and wordcloud
 ---
+## Sample Images
+![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/Tweets/OUTPUTS/Figure_1.png)
+![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/Tweets/OUTPUTS/Figure_2.png)
+![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/Tweets/OUTPUTS/3.png)
+![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/Tweets/OUTPUTS/4.png)
 
+---
 ## References
 - [twint](https://github.com/twintproject/twint)
 - [Analysis](https://towardsdatascience.com/visualization-of-information-from-raw-twitter-data-part-1-99181ad19c)
