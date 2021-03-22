@@ -6,7 +6,8 @@ import csv
 import seaborn as sns
 import re
 import collections
-from wordcloud import WordCloud
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+from PIL import Image
 
 #Store the tweets from txt file to json with all details and list data form
 tweets_data = []
@@ -67,11 +68,13 @@ hashtag_ordered_list = hashtag_ordered_list[::-1]
 hashtag_ordered_values = []
 hashtag_ordered_keys = []
 print(len(hashtag_ordered_list))
-print(hashtag_ordered_list)
+##print(hashtag_ordered_list)
 #Pick the 30 most used hashtags to plot
+  
 for item in hashtag_ordered_list[4:30]:
     hashtag_ordered_keys.append(item[0])
     hashtag_ordered_values.append(item[1])
+    
 #Plotting a graph with the most used hashtags
 fig, ax = plt.subplots(figsize = (12,12))
 y_pos = np.arange(len(hashtag_ordered_keys))
@@ -86,17 +89,19 @@ plt.show()
 #Make a wordcloud plot of the most used hashtags, for this we need a #dictionary 
 #where the keys are the words and the values are the number of #appearances
 hashtag_ordered_dict = {}
-for item in hashtag_ordered_list[4:50]:#leave the top 4 
+for item in hashtag_ordered_list[4:90]:#leave the top 4 
     hashtag_ordered_dict[item[0]] = item[1]
-wordcloud = WordCloud(width=1000, height=1000, random_state=21, max_font_size=200, background_color = 'white').generate_from_frequencies(hashtag_ordered_dict)
-plt.figure(figsize=(15, 10))
-plt.imshow(wordcloud, interpolation="bilinear")
-plt.axis('off')
-
-plt.show()
+#wordcloud = WordCloud(width=1000, height=1000, random_state=21, max_font_size=200, background_color = 'white').generate_from_frequencies(hashtag_ordered_dict)
+mask = np.array(Image.open('india.jpeg'))
+wordcloud = WordCloud(width=1000,height=1000,background_color="white",colormap="inferno",  max_font_size=30,min_font_size=5,mask=mask,
+               random_state=7, max_words=200,contour_color='black').generate_from_frequencies(hashtag_ordered_dict)
 
 
-#Now we will do the same with the mentions:
+image = wordcloud.to_image()
+image.show()
+
+
+#Similarly for mentions:
 mentions = []
 mention_pattern = re.compile(r"@[a-zA-Z_0-9]+")
 mention_matches=[]
@@ -111,8 +116,11 @@ for match in mention_matches:
         else:
             mentions_dict[singlematch] = mentions_dict[singlematch]+1
 
+
+
 #Create an ordered list of tuples with the most mentioned users and #the number of times they have been mentioned
 mentions_ordered_list =sorted(mentions_dict.items(), key=lambda x:x[1])
+##print(mentions_ordered_list[0],mentions_ordered_list[-1])
 mentions_ordered_list = mentions_ordered_list[::-1]
 #Pick the 20 top mentioned users to plot and separate the previous #list into two list: one with the users and one with the values
 mentions_ordered_values = []
@@ -130,18 +138,19 @@ ax.set_yticks(y_pos )
 ax.set_yticklabels(list(mentions_ordered_keys)[::-1])
 ax.set_xlabel("No of mentions")
 ax.set_title("Most mentioned accounts", fontsize = 20)
-
 plt.show()
 
 #Make a wordcloud representation for the most mentioned accounts too
 mentions_ordered_dict = {}
-for item in mentions_ordered_list[:40]:
+for item in mentions_ordered_list[:]:
     mentions_ordered_dict[item[0]] = item[1]
-wordcloud = WordCloud(width=1000, height=1000, random_state=21, max_font_size=200, background_color = 'white').generate_from_frequencies(mentions_ordered_dict)
-plt.figure(figsize=(15, 10))
-plt.imshow(wordcloud, interpolation="bilinear")
-plt.axis('off')
+##wordcloud = WordCloud(width=1000, height=1000, random_state=21, max_font_size=200, background_color = 'white').generate_from_frequencies(mentions_ordered_dict)
+mask = np.array(Image.open('india.jpeg'))
+wordcloud = WordCloud(width=1000,height=1000,background_color="white",colormap="plasma", max_words=90, mask=mask,
+               max_font_size=80,min_font_size=6, random_state=3, contour_color='black').generate_from_frequencies(mentions_ordered_dict)
+image = wordcloud.to_image()
+image.show()
 
-plt.show()
+
 
 
