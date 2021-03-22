@@ -96,9 +96,11 @@ mask = np.array(Image.open('india.jpeg'))
 wordcloud = WordCloud(width=1000,height=1000,background_color="white",colormap="inferno",  max_font_size=30,min_font_size=5,mask=mask,
                random_state=7, max_words=200,contour_color='black').generate_from_frequencies(hashtag_ordered_dict)
 
-
-image = wordcloud.to_image()
-image.show()
+plt.figure(figsize=(16, 12))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis('off')
+plt.tight_layout(pad=0)
+plt.show()
 
 
 #Similarly for mentions:
@@ -148,9 +150,10 @@ for item in mentions_ordered_list[:]:
 mask = np.array(Image.open('india.jpeg'))
 wordcloud = WordCloud(width=1000,height=1000,background_color="white",colormap="plasma", max_words=90, mask=mask,
                max_font_size=80,min_font_size=6, random_state=3, contour_color='black').generate_from_frequencies(mentions_ordered_dict)
-image = wordcloud.to_image()
-image.show()
-
-
+plt.figure(figsize=(16, 12))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis('off')
+plt.tight_layout(pad=0)
+plt.show()
 
 
