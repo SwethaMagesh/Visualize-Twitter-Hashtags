@@ -10,12 +10,12 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 from PIL import Image
 
 #Store the tweets from txt file to json with all details and list data form
-tweets_data = []
-tweets_text = []
-tweets_id=dict()
+tweets_data = [] #the text data for further processing
+tweets_text = [] #Array of json objects with all details
+tweets_id=dict() #Hashmap to store tweet ids to prevent repetition
 print("Parsing the text file")
 for filename in ['result1.txt','result2.txt','result3.txt','result4.txt','result5.txt']:
-    print("Parsing the text file",filename)
+    print("Parsing the text file ",filename)
     with open(filename,'r') as file:
         number=0
         for line in file.read().split('\n'):
@@ -36,13 +36,13 @@ for filename in ['result1.txt','result2.txt','result3.txt','result4.txt','result
             tweets_text.append(temp)
             tweets_data.append(tweets)
             number+=1
-        print(number," is the number of tweets")
+        print(number," is the number of tweets in this file ")
     
         
 
 
 
-print("The total number of Tweets is:",len(tweets_data))
+print("The total number of Tweets extracted is:",len(tweets_data))
 
 
 #To see the most used hashtags.
@@ -62,8 +62,8 @@ for match in hashtag_matches:
 
 
 #Making a list of the most used hashtags and their values
-hashtag_ordered_list =sorted(hashtag_dict.items(), key=lambda x:x[1])
-hashtag_ordered_list = hashtag_ordered_list[::-1]
+hashtag_ordered_list =sorted(hashtag_dict.items(), key=lambda x:x[1]) ## sort based on count
+hashtag_ordered_list = hashtag_ordered_list[::-1]  ## reverse it to get highest count first
 #Separating the hashtags and their values into two different lists
 hashtag_ordered_values = []
 hashtag_ordered_keys = []
@@ -86,10 +86,10 @@ ax.set_title("Most used #hashtags", fontsize = 20)
 plt.tight_layout(pad=3)
 plt.show()
 
-#Make a wordcloud plot of the most used hashtags, for this we need a #dictionary 
-#where the keys are the words and the values are the number of #appearances
+#Make a wordcloud plot of the most used hashtags, for this we need a dictionary 
+#where the keys are the words and the values are the number of appearances
 hashtag_ordered_dict = {}
-for item in hashtag_ordered_list[4:90]:#leave the top 4 
+for item in hashtag_ordered_list[4:90]:#leave the top 4 just the IPLAuction related
     hashtag_ordered_dict[item[0]] = item[1]
 #wordcloud = WordCloud(width=1000, height=1000, random_state=21, max_font_size=200, background_color = 'white').generate_from_frequencies(hashtag_ordered_dict)
 mask = np.array(Image.open('india.jpeg'))
@@ -120,11 +120,13 @@ for match in mention_matches:
 
 
 
-#Create an ordered list of tuples with the most mentioned users and #the number of times they have been mentioned
+#Create an ordered list of tuples with the most mentioned users and
+#the number of times they have been mentioned
 mentions_ordered_list =sorted(mentions_dict.items(), key=lambda x:x[1])
 ##print(mentions_ordered_list[0],mentions_ordered_list[-1])
 mentions_ordered_list = mentions_ordered_list[::-1]
-#Pick the 20 top mentioned users to plot and separate the previous #list into two list: one with the users and one with the values
+#Pick the 20 top mentioned users to plot and separate the previous
+#list into two list: one with the users and one with the values
 mentions_ordered_values = []
 mentions_ordered_keys = []
 print(len(mentions_ordered_list))
