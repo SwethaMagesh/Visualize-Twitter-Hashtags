@@ -6,7 +6,7 @@
 - Identify hashtags related to IPL Auction 2021
 	- Like `#IPLAuction #CSK #Dhoni #MI #Gayle etc. `
 - Scrap the tweets from twitter 
-- Libraries used: twint and tweepy
+- Libraries used: twint
 - Identify the counts of hashtags and mentioned accounts and display it as graph and wordcloud
 - Cluster the hashtags and detect communities using Louvain algorithm and visualise clusters in gephi
 ---
