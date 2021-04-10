@@ -5,10 +5,9 @@
 ## Proposed work
 - Identify hashtags related to IPL Auction 2021
 	- Like `#IPLAuction #CSK #Dhoni #MI #Gayle etc. `
-- Scrap the tweets from twitter 
-- Libraries used: twint
-- Identify the counts of hashtags and mentioned accounts and display it as graph and wordcloud
-- Cluster the hashtags and detect communities using Louvain algorithm and visualise clusters in gephi
+- Scrap the tweets from twitter ( Library used for scrapping: ***twint*** )
+- Identify the counts of hashtags and mentioned accounts and display it as ***graph and wordcloud***
+- Cluster the hashtags and detect ***communities using Louvain algorithm and visualise clusters in gephi***
 ---
 ## How to view this repository
 - [Scrapper folder](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/tree/main/Scrapper) has the twint code for scrapping the tweets along with outputs
