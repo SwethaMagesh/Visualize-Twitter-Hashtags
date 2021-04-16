@@ -19,19 +19,14 @@
 
 ---
 ## Sample Outputs
-### The most frequent hashtags are 
-<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/graphHash.png width=500 height=500>
+### VISUALISE - Bar and wordcloud representation
+![image](https://user-images.githubusercontent.com/43994542/115013710-06891c80-9ecf-11eb-95e2-9fb6318d9840.png)
 
-### Word cloud view of the same
-<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/hashCloud.png width=800 height=600>
-### The most frequent mentions are
-<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/graphMentions.png width=500 height=500>
-### Word cloud view of the same
-<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/mentionCloud.png width=800 height=600>
+![image](https://user-images.githubusercontent.com/43994542/115013635-ec4f3e80-9ece-11eb-802c-bd9d557889d8.png)
 
-### Clusters in gephi
-<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/clusterOutput.JPG width=500 height=500>
-<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/clusterNetworkx.JPG width=800 height=200>
+### ANALYSE - Clusters in Louvain algorithm
+![image](https://user-images.githubusercontent.com/43994542/115013832-2d475300-9ecf-11eb-984d-e5ac8fe6afe2.png)
+
 
 ---
 ## References
