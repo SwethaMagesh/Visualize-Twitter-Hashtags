@@ -19,18 +19,19 @@
 
 ---
 ## Sample Outputs
-- The most frequent hashtags are 
-![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/graphHash.png)
-- Word cloud view of the same
-![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/hashCloud.png)
-- The most frequent mentions are
-![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/graphMentions.png)
-- Word cloud view of the same
-![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/mentionCloud.png)
+### The most frequent hashtags are 
+<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/graphHash.png width=500 height=500>
 
-- Clusters in gephi
-- ![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/clusterOutput.JPG)
-- ![image](https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/clusterNetworkx.JPG)
+### Word cloud view of the same
+<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/hashCloud.png width=800 height=600>
+### The most frequent mentions are
+<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/graphMentions.png width=500 height=500>
+### Word cloud view of the same
+<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/mentionCloud.png width=800 height=600>
+
+### Clusters in gephi
+<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/clusterOutput.JPG width=500 height=500>
+<img src=https://github.com/SwethaMagesh/Visualize-Twitter-Hashtags/blob/main/OUTPUTS/clusterNetworkx.JPG width=800 height=200>
 
 ---
 ## References
